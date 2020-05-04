@@ -5,25 +5,40 @@
     <title>Title</title>
 </head>
 <body>
-<h1>{{ @title }}</h1>
+    <h1>{{ @title }}</h1>
 
-<p>You are logged in as {{ @username }} with password {{ @password }}</p>
-<p>{{@tmp}}, Celcius {{round ((@tmp -32)*(5/9), 2)}}</p>
+    <p>You are logged in as {{ @username }} with password {{ @password }}</p>
+    <p>{{@tmp}}, Celcius {{round ((@tmp -32)*(5/9), 2)}}</p>
 
-<p>I like {{@color}}</p>
-<p>Circumference: {{round((2*3.14*@radius),2)}}</p>
-<repeat group ="{{ @fruits }}" value="{{ @fruit }}">
-    <p>{{ @fruit }}</p>
-</repeat>
+    <p>I like {{@color}}</p>
+    <p>Circumference: {{round((2*3.14*@radius),2)}}</p>
+    <repeat group ="{{ @fruits }}" value="{{ @fruit }}">
+        <p>{{ @fruit }}</p>
+    </repeat>
+    <h2>Fruits</h2>
+    <repeat group ="{{ @bookmarks }}" value="{{ @bookmark }}">
+        <p><a href="{{ @bookmark }}">{{ @bookmark}}</a></p>
+    </repeat>
 
-<repeat group ="{{ @bookmarks }}" value="{{ @bookmark }}">
-    <p><a href="{{ @bookmark }}">{{ @bookmark}}</a></p>
-</repeat>
-<h2>Fruitz</h2>
 
-<h2> deserts</h2>
-<repeat group ="{{ @deserts }}" key = '{{ @id }}' value="{{ @desert }}">
-    <input type="radio" name="meal" id="desert" value="{{@id}}"> {{@desert}}</input><br>
-</repeat>
+    <h2> deserts</h2>
+    <repeat group ="{{ @deserts }}" key = '{{ @id }}' value="{{ @desert }}">
+        <input type="radio" name="meal" id="desert" value="{{@id}}"> {{@desert}}</input><br>
+    </repeat>
+
+    <h2>Conditional content</h2>
+    <check if="{{@preferredCustomer}}">
+        <true>
+            <strong>Thank you!</strong>
+        </true>
+        <false>
+            <strong>Your missing out</strong>
+        </false>
+    </check>
+    <check if="{{ @lastLogin > strtotime('-1 month')}}">
+        <true><p>Welcome back!</p></true>
+        <false><p>It's been a while</p></false>
+    </check>
+
 </body>
 </html>

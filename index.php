@@ -29,6 +29,11 @@ $f3->route('GET /', function ($f3) {
 
     $f3->set('deserts',array('chocolate'=>"chocolate Moose",'vanilla'=>"Vanilla custard",'strawberry'=>"Strawberry Shortcake ",));
 
+    //conditional content
+    $f3->set('preferredCustomer',false);
+    $f3->set('lastLogin',strtotime('-1 week'));
+
+
     $view = new Template();
     echo $view->render("views/info.html");
 });
